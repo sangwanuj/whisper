@@ -1,30 +1,22 @@
 from faster_whisper.utils import download_model
 
 model_names = [
-    "tiny",
-    "base",
-    "small",
-    "medium",
-    "large-v1",
-    "large-v2",
-    "large-v3",
-    "distil-large-v2",
-    "distil-large-v3",
-    "turbo",
+   "tiny", "base", "medium",
+   "large-v3", "turbo", "hi-large-v3",
 ]
 
+ALIAS_MAP = {
+   "hi-large-v3": "ARTPARK-IISc/whisper-large-v3-vaani-hindi"
+}
 
 def download_model_weights(selected_model):
-    """
-    Download model weights.
-    """
-    print(f"Downloading {selected_model}...")
-    download_model(selected_model, cache_dir=None)
-    print(f"Finished downloading {selected_model}.")
-
+    actual = ALIAS_MAP.get(selected_model, selected_model)
+    print(f"Downloading alias='{selected_model}' → actual='{actual}' …")
+    download_model(actual, cache_dir=None)
+    print(f"Finished downloading alias='{selected_model}'.")
 
 # Loop through models sequentially
-for model_name in model_names:
-    download_model_weights(model_name)
+for name in model_names:
+    download_model_weights(name)
 
 print("Finished downloading all models.")
