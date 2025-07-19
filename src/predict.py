@@ -22,7 +22,7 @@ AVAILABLE_MODELS = {
 }
 
 ALIAS_MAP = {
-    "hi-large-v3": "ARTPARK-IISc/whisper-large-v3-vaani-hindi"
+    "hi-large-v3": "truckmitra/whisper-large-v3-vaani-hindi-ct2"
 }
 
 class Predictor:
