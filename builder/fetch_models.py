@@ -3,7 +3,7 @@ from faster_whisper.utils import download_model
 model_names = ["tiny", "base", "large-v3", "turbo", "hi-large-v3"]
 
 ALIAS_MAP = {
-    "hi-large-v3": "ARTPARK-IISc/whisper-large-v3-vaani-hindi"
+    "hi-large-v3": "truckmitra/whisper-large-v3-vaani-hindi-ct2"
 }
 
 def download_model_weights(selected_model):
