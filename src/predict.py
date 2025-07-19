@@ -18,16 +18,12 @@ from faster_whisper.utils import format_timestamp
 
 # Define available models (for validation)
 AVAILABLE_MODELS = {
-    "tiny",
-    "base",
-    "small",
-    "medium",
-    "large-v1",
-    "large-v2",
-    "large-v3",
-    "turbo",
+   "tiny", "base", "large-v3", "turbo", "hi-large-v3"
 }
 
+ALIAS_MAP = {
+    "hi-large-v3": "ARTPARK-IISc/whisper-large-v3-vaani-hindi"
+}
 
 class Predictor:
     """A Predictor class for the Whisper model with lazy loading"""
@@ -96,8 +92,9 @@ class Predictor:
                 # Load the requested model
                 print(f"Loading model: {model_name}...")
                 try:
+                    actual_name = ALIAS_MAP.get(model_name, model_name)
                     loaded_model = WhisperModel(
-                        model_name,
+                        actual_name,
                         device="cuda" if rp_cuda.is_available() else "cpu",
                         compute_type="float16" if rp_cuda.is_available() else "int8",
                     )
